@@ -1,0 +1,40 @@
+
+0.  Code cleanup:
+
+    - Move some stuff into the detail directory
+    - Get the sequencing type to be consistent across all the tape related files.
+
+1.  Promote()
+
+    Take a "backup" tape and make it primary.
+    Adjust the listeners, senders / etc... accordingly
+
+2.  Growability
+
+    Make it so I can grow segments in the Synchronizer.  It will create the next segement
+    and it will handle it accordingly.  Clients would store the mapped memory in a linked
+    list with the idea they would remove the current page from memory when they get to that
+    point.  This should keep the memory footprint on a per-process basis minimal.
+
+
+3.  Counting of the pages in use (expand header)
+    Add to the memory header somewhere.  When it goes to 1 (i.e., only the synchronizer)
+    the synchronizer can "finalize" it and move it out of memory and onto disk or the 
+    like for more perminant storage.
+
+    In general, put some additional useful stuff into the header on the tape.  This is
+    currently just a start.
+
+
+4.  Improve the shared memory stuff; I think its about 90% there...but should be 
+    put into a better state.  
+
+
+5.  Socket cleanup --
+    Create a base class that handles much of it.  It's currently a bit of a hack.  I
+    wanted to do it this way first, knowing that this would need work later.  I would 
+    probably move the parsers into their own class(es), and give the socket as an
+    argument.
+
+6.  CMake files --
+    Write them.  Need to install CMake on this mac.
