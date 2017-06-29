@@ -1,0 +1,10 @@
+
+The idea here is that your memory is a tape...it just keeps growing, adding 
+in more memory.  In this case, I made it operate off of shared memory and
+then added in synchronization with a backup. It's a generic model for
+communication.
+
+The test directory contains a sample Reader, Writer and Synchronizer.  
+Eventually, they should get moved into an application directory when
+they get a bit more mature.
+
